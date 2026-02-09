@@ -277,7 +277,7 @@ section {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url('../images/hero.png');
+    background-image: url('../images/hero.webp');
     background-size: cover;
     background-position: top center;
     z-index: -1;
@@ -1791,7 +1791,7 @@ div#modal-video-container {
         flex-direction: column-reverse;
         text-align: center;
         gap: 20px;
-        padding: 40px 0 40px 0;
+        padding: 40px 0 100px 0;
     }
 
 
