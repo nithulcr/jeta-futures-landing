@@ -759,7 +759,7 @@
 
                 </div>
 
-                <div class="steps-slider fade-up2">
+                <div class="steps-slider">
                     <div class="swiper myStepsSwiper">
                         <div class="swiper-wrapper ">
 
@@ -1283,29 +1283,68 @@
 
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        const stepsSwiper = new Swiper(".myStepsSwiper", {
-            slidesPerView: 1.3,        // shows part of next card like in your image
-            spaceBetween: 20,
-            centeredSlides: false,
-            loop: true,
-            speed: 800,
-            grabCursor: true,          // drag with mouse
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const stepsSwiper = new Swiper(".myStepsSwiper", {
+        slidesPerView: 1.3,
+        spaceBetween: 20,
+        centeredSlides: false,
+        loop: false,
+        allowTouchMove: false,
+        speed: 800,
+        breakpoints: {
+            768: {
+                slidesPerView: 1.5,
+                spaceBetween: 24,
             },
-            breakpoints: {
-                768: {
-                    slidesPerView: 1.5,    // more cards on larger screens
-                    spaceBetween: 24,
-                },
+        },
+    });
+
+    const sliderContainer = document.querySelector('.steps-slider');
+    const swiperWrapper = sliderContainer.querySelector('.swiper-wrapper');
+    const slides = sliderContainer.querySelectorAll('.swiper-slide');
+    const numSlides = slides.length;
+
+    ScrollTrigger.create({
+        trigger: sliderContainer,
+        start: "top top+=100",           // Pin at top: 100px
+        end: `+=${window.innerHeight * numSlides}`,  // 1 viewport height PER slide
+        pin: true,
+        pinSpacing: true,
+        scrub: 0.5,                      // Smooth scrubbing (not instant)
+        snap: {
+            snapTo: (value, self) => {
+                // Snap to exact slide positions (0, 1, 2, etc.)
+                return Math.round(value * numSlides) / numSlides;
             },
-            // No navigation, no pagination
-            navigation: false,
-            pagination: false,
-        });
-    </script>
+            duration: { min: 0.2, max: 0.5 },  // Smooth snap duration
+            ease: "power2.inOut"
+        },
+        onUpdate: (self) => {
+            // Ultra-smooth slide progression
+            const normalizedProgress = self.progress * numSlides;
+            const slideIndex = Math.max(0, Math.min(numSlides - 1, Math.round(normalizedProgress)));
+            
+            // Smooth slideTo with loop prevention
+            if (slideIndex !== stepsSwiper.activeIndex) {
+                stepsSwiper.slideTo(slideIndex, 400);  // Smooth transition
+            }
+            
+            // Direct transform for silky smooth wrapper movement
+            const xPercent = -100 * (numSlides - 1.3) * (self.progress);
+            gsap.set(swiperWrapper, { xPercent });
+        }
+    });
+</script>
+
+
+
     <script>
         const swiper = new Swiper('.testimonialSwiper', {
             slidesPerView: 1,

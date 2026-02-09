@@ -2466,3 +2466,27 @@ img.banner-shape {
   line-height: 1.4;
 }
 }
+
+
+
+
+.steps-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.myStepsSwiper {
+    width: 100%;
+}
+
+.swiper-wrapper {
+    will-change: transform;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
