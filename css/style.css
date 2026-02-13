@@ -46,7 +46,36 @@ section {
     background: var(--bg-dark);
 
 }
-
+.fixed-contact {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+.fixed-contact.fixed-contact2 {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+.fixed-contact img {
+    width: 70px;
+    height: 70px;
+}
 .text {
     -webkit-background-clip: text;
     background-clip: text;
@@ -1781,6 +1810,7 @@ div#modal-video-container {
         width: 36px;
         max-height: 70%;
         object-fit: contain;
+        
     }
 
 }
@@ -2465,6 +2495,12 @@ img.banner-shape {
   font-size: 18px;
   line-height: 1.4;
 }
+    .section-shape img.arrow-shape,
+    .title-with-arrow img {
+        width: 50px;
+        max-height: 100%;
+        top: -15%;
+    }
 }
 
 

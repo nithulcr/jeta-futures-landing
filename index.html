@@ -92,6 +92,14 @@
 
         </div>
     </div>
+    <a href="tel:+9999999999" target="_blank" class="fixed-contact">
+
+		<img src="images/message.png" class="icon" alt="Message">
+	</a>
+    <a href="https://wa.me/+9999999999" target="_blank" class="fixed-contact fixed-contact2">
+
+		<img src="images/whatsapp.png" class="icon" alt="Whatsapp">
+	</a>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -1291,57 +1299,119 @@
 <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    const stepsSwiper = new Swiper(".myStepsSwiper", {
-        slidesPerView: 1.3,
-        spaceBetween: 20,
-        centeredSlides: false,
-        loop: false,
-        allowTouchMove: false,
-        speed: 800,
-        breakpoints: {
-            768: {
-                slidesPerView: 1.5,
-                spaceBetween: 24,
+    let scrollTriggerInstance = null;
+    let normalSwiperInstance = null;
+    let scrollTriggerSwiperInstance = null;
+
+    function initNormalSwiper() {
+        // Kill ScrollTrigger if exists
+        if (scrollTriggerInstance) {
+            scrollTriggerInstance.kill();
+            scrollTriggerInstance = null;
+        }
+        
+        // Destroy ScrollTrigger Swiper if exists
+        if (scrollTriggerSwiperInstance) {
+            scrollTriggerSwiperInstance.destroy(true, true);
+            scrollTriggerSwiperInstance = null;
+        }
+
+        // Init NORMAL mobile swiper
+        normalSwiperInstance = new Swiper(".myStepsSwiper", {
+            slidesPerView: 1.3,
+            spaceBetween: 20,
+            centeredSlides: false,
+            loop: true,           // Loop for mobile
+            allowTouchMove: true, // Touch enabled
+            grabCursor: true,
+            speed: 800,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
             },
-        },
+            breakpoints: {
+                768: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 24,
+                },
+            },
+        });
+    }
+
+    function initScrollTriggerSwiper() {
+        // Destroy normal swiper if exists
+        if (normalSwiperInstance) {
+            normalSwiperInstance.destroy(true, true);
+            normalSwiperInstance = null;
+        }
+
+        const sliderContainer = document.querySelector('.steps-slider');
+        const swiperWrapper = sliderContainer.querySelector('.swiper-wrapper');
+        const slides = sliderContainer.querySelectorAll('.swiper-slide');
+        const numSlides = slides.length;
+
+        // Init ScrollTrigger Swiper (no touch)
+        scrollTriggerSwiperInstance = new Swiper(".myStepsSwiper", {
+            slidesPerView: 1.3,
+            spaceBetween: 20,
+            centeredSlides: false,
+            loop: false,
+            allowTouchMove: false,  // Disable touch for desktop
+            speed: 800,
+            breakpoints: {
+                768: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 24,
+                },
+            },
+        });
+
+        // Create ScrollTrigger
+        scrollTriggerInstance = ScrollTrigger.create({
+            trigger: sliderContainer,
+            start: "top top+=100",
+            end: `+=${window.innerHeight * numSlides}`,
+            pin: true,
+            pinSpacing: true,
+            scrub: 0.5,
+            snap: {
+                snapTo: (value, self) => Math.round(value * numSlides) / numSlides,
+                duration: { min: 0.2, max: 0.5 },
+                ease: "power2.inOut"
+            },
+            onUpdate: (self) => {
+                const normalizedProgress = self.progress * numSlides;
+                const slideIndex = Math.max(0, Math.min(numSlides - 1, Math.round(normalizedProgress)));
+                
+                if (slideIndex !== scrollTriggerSwiperInstance.activeIndex) {
+                    scrollTriggerSwiperInstance.slideTo(slideIndex, 400);
+                }
+                
+                const xPercent = -100 * (numSlides - 1.3) * (self.progress);
+                gsap.set(swiperWrapper, { xPercent });
+            }
+        });
+    }
+
+    // Responsive logic using GSAP matchMedia
+    const mm = gsap.matchMedia();
+
+    // Desktop: ScrollTrigger (1100px+)
+    mm.add("(min-width: 1100px)", () => {
+        initScrollTriggerSwiper();
     });
 
-    const sliderContainer = document.querySelector('.steps-slider');
-    const swiperWrapper = sliderContainer.querySelector('.swiper-wrapper');
-    const slides = sliderContainer.querySelectorAll('.swiper-slide');
-    const numSlides = slides.length;
+    // Mobile/Tablet: Normal Swiper (<1100px)
+    mm.add("(max-width: 1099px)", () => {
+        initNormalSwiper();
+    });
 
-    ScrollTrigger.create({
-        trigger: sliderContainer,
-        start: "top top+=100",           // Pin at top: 100px
-        end: `+=${window.innerHeight * numSlides}`,  // 1 viewport height PER slide
-        pin: true,
-        pinSpacing: true,
-        scrub: 0.5,                      // Smooth scrubbing (not instant)
-        snap: {
-            snapTo: (value, self) => {
-                // Snap to exact slide positions (0, 1, 2, etc.)
-                return Math.round(value * numSlides) / numSlides;
-            },
-            duration: { min: 0.2, max: 0.5 },  // Smooth snap duration
-            ease: "power2.inOut"
-        },
-        onUpdate: (self) => {
-            // Ultra-smooth slide progression
-            const normalizedProgress = self.progress * numSlides;
-            const slideIndex = Math.max(0, Math.min(numSlides - 1, Math.round(normalizedProgress)));
-            
-            // Smooth slideTo with loop prevention
-            if (slideIndex !== stepsSwiper.activeIndex) {
-                stepsSwiper.slideTo(slideIndex, 400);  // Smooth transition
-            }
-            
-            // Direct transform for silky smooth wrapper movement
-            const xPercent = -100 * (numSlides - 1.3) * (self.progress);
-            gsap.set(swiperWrapper, { xPercent });
-        }
+    // Handle resize
+    mm.add("(orientationchange, resize)", () => {
+        mm.refresh();
     });
 </script>
+
 
 
 
