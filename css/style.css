@@ -1814,8 +1814,15 @@ div#modal-video-container {
     }
 
 }
-
+@media (max-width: 1100px) {
+   .myStepsSwiper .swiper-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+}
 @media (max-width: 1024px) {
+    
 
     .hero-content {
         flex-direction: column-reverse;
