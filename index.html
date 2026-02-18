@@ -19,7 +19,7 @@
         /* loeader start */
         .preloader {
             z-index: 5000;
-            background: #282828;
+            background: #00182f;
             grid-template-rows: auto auto;
             justify-content: center;
             align-items: center;
@@ -92,14 +92,14 @@
 
         </div>
     </div>
-    <a href="tel:+9999999999" target="_blank" class="fixed-contact">
+    <a href="https://ig.me/m/jeta_futures" target="_blank" class="fixed-contact">
 
-		<img src="images/message.png" class="icon" alt="Message">
-	</a>
-    <a href="https://wa.me/+9999999999" target="_blank" class="fixed-contact fixed-contact2">
+        <img src="images/instagram.png" class="icon" alt="Message">
+    </a>
+    <a href="https://wa.me/7907141487" target="_blank" class="fixed-contact fixed-contact2">
 
-		<img src="images/whatsapp.png" class="icon" alt="Whatsapp">
-	</a>
+        <img src="images/whatsapp.png" class="icon" alt="Whatsapp">
+    </a>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -163,12 +163,7 @@
 
                         </div>
                     </div>
-                    <!-- <div class="hero-visual">
-                    <div class="floating">
-                        <img src="images/hero-img.png">
-                    </div>
 
-                </div> -->
                 </div>
 
             </div>
@@ -1228,11 +1223,20 @@
                 <div class="bg-div">
                     <div class="container">
                         <div class="section-header center fade-up2">
-                            <h2 class="section-title text">Feel Free to Get in Touch or Visit our Location.
+                            <h2 class="section-title text">Feel Free to<br>Connect with Us.
                             </h2>
 
                         </div>
-                        <form class="fade-up2">
+                        <div class="form-btn">
+                            <a href="https://wa.me/7907141487" class="btn whatsapp center">
+                                <span>Connect with Whatsapp</span>
+                                <span></span>
+                                <span>
+                                    <img src="images/whatsapp2.png">
+                                </span>
+                            </a>
+                        </div>
+                        <!-- <form class="fade-up2">
                             <input type="text" placeholder="Full name*" required>
                             <input type="email" placeholder="Email*" required>
 
@@ -1254,7 +1258,7 @@
                                 </a>
                             </div>
 
-                        </form>
+                        </form> -->
 
                     </div>
                 </div>
@@ -1271,7 +1275,10 @@
         <div class="container">
             <div class="footer-content">
                 <h4>DISCLAIMER & ETHICAL CLARITY</h4>
-                <p>Jeta Futures is an education-only forex trading institute. We do not provide investment advice. We do not guarantee profits or returns. Forex trading involves risk. All learning is for educational purposes only. Responsibility for trading decisions lies solely with the trader. We believe in ethical, transparent trading education.</p>
+                <p>Jeta Futures is an education-only forex trading institute. We do not provide investment advice. We do
+                    not guarantee profits or returns. Forex trading involves risk. All learning is for educational
+                    purposes only. Responsibility for trading decisions lies solely with the trader. We believe in
+                    ethical, transparent trading education.</p>
 
             </div>
             <div class="footer-bottom">
@@ -1291,105 +1298,105 @@
 
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 
-<script>
-    gsap.registerPlugin(ScrollTrigger);
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
 
-    let scrollTriggerInstance = null;
-    let scrollTriggerSwiperInstance = null;
+        let scrollTriggerInstance = null;
+        let scrollTriggerSwiperInstance = null;
 
-    function initScrollTriggerSwiper() {
-        const sliderContainer = document.querySelector('.steps-slider');
-        const swiperWrapper = sliderContainer.querySelector('.swiper-wrapper');
-        const slides = sliderContainer.querySelectorAll('.swiper-slide');
-        const numSlides = slides.length;
+        function initScrollTriggerSwiper() {
+            const sliderContainer = document.querySelector('.steps-slider');
+            const swiperWrapper = sliderContainer.querySelector('.swiper-wrapper');
+            const slides = sliderContainer.querySelectorAll('.swiper-slide');
+            const numSlides = slides.length;
 
-        // Init ScrollTrigger Swiper (desktop only)
-        scrollTriggerSwiperInstance = new Swiper(".myStepsSwiper", {
-            slidesPerView: 1.3,
-            spaceBetween: 20,
-            centeredSlides: false,
-            loop: false,
-            allowTouchMove: false,  // Disable touch
-            speed: 800,
-            breakpoints: {
-                768: {
-                    slidesPerView: 1.5,
-                    spaceBetween: 24,
+            // Init ScrollTrigger Swiper (desktop only)
+            scrollTriggerSwiperInstance = new Swiper(".myStepsSwiper", {
+                slidesPerView: 1.3,
+                spaceBetween: 20,
+                centeredSlides: false,
+                loop: false,
+                allowTouchMove: false,  // Disable touch
+                speed: 800,
+                breakpoints: {
+                    768: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 24,
+                    },
                 },
-            },
-        });
+            });
 
-        // Create ScrollTrigger
-        scrollTriggerInstance = ScrollTrigger.create({
-            trigger: sliderContainer,
-            start: "top top+=100",
-            end: `+=${window.innerHeight * numSlides}`,
-            pin: true,
-            pinSpacing: true,
-            scrub: 0.5,
-            snap: {
-                snapTo: (value, self) => Math.round(value * numSlides) / numSlides,
-                duration: { min: 0.2, max: 0.5 },
-                ease: "power2.inOut"
-            },
-            onUpdate: (self) => {
-                const normalizedProgress = self.progress * numSlides;
-                const slideIndex = Math.max(0, Math.min(numSlides - 1, Math.round(normalizedProgress)));
-                
-                if (slideIndex !== scrollTriggerSwiperInstance.activeIndex) {
-                    scrollTriggerSwiperInstance.slideTo(slideIndex, 400);
+            // Create ScrollTrigger
+            scrollTriggerInstance = ScrollTrigger.create({
+                trigger: sliderContainer,
+                start: "top top+=100",
+                end: `+=${window.innerHeight * numSlides}`,
+                pin: true,
+                pinSpacing: true,
+                scrub: 0.5,
+                snap: {
+                    snapTo: (value, self) => Math.round(value * numSlides) / numSlides,
+                    duration: { min: 0.2, max: 0.5 },
+                    ease: "power2.inOut"
+                },
+                onUpdate: (self) => {
+                    const normalizedProgress = self.progress * numSlides;
+                    const slideIndex = Math.max(0, Math.min(numSlides - 1, Math.round(normalizedProgress)));
+
+                    if (slideIndex !== scrollTriggerSwiperInstance.activeIndex) {
+                        scrollTriggerSwiperInstance.slideTo(slideIndex, 400);
+                    }
+
+                    const xPercent = -100 * (numSlides - 1.3) * (self.progress);
+                    gsap.set(swiperWrapper, { xPercent });
                 }
-                
-                const xPercent = -100 * (numSlides - 1.3) * (self.progress);
-                gsap.set(swiperWrapper, { xPercent });
+            });
+        }
+
+        function destroySwiperAndScrollTrigger() {
+            // Destroy ScrollTrigger
+            if (scrollTriggerInstance) {
+                scrollTriggerInstance.kill();
+                scrollTriggerInstance = null;
             }
+
+            // Destroy Swiper
+            if (scrollTriggerSwiperInstance) {
+                scrollTriggerSwiperInstance.destroy(true, true);
+                scrollTriggerSwiperInstance = null;
+            }
+
+            // Reset slider to static cards (natural flex layout)
+            const swiperWrapper = document.querySelector('.swiper-wrapper');
+            if (swiperWrapper) {
+                swiperWrapper.style.transform = 'none';
+                swiperWrapper.style.transition = 'none';
+            }
+        }
+
+        // Responsive logic using GSAP matchMedia
+        const mm = gsap.matchMedia();
+
+        // Desktop ONLY: ScrollTrigger (1100px+)
+        mm.add("(min-width: 1100px)", () => {
+            initScrollTriggerSwiper();
         });
-    }
 
-    function destroySwiperAndScrollTrigger() {
-        // Destroy ScrollTrigger
-        if (scrollTriggerInstance) {
-            scrollTriggerInstance.kill();
-            scrollTriggerInstance = null;
-        }
-        
-        // Destroy Swiper
-        if (scrollTriggerSwiperInstance) {
-            scrollTriggerSwiperInstance.destroy(true, true);
-            scrollTriggerSwiperInstance = null;
-        }
-        
-        // Reset slider to static cards (natural flex layout)
-        const swiperWrapper = document.querySelector('.swiper-wrapper');
-        if (swiperWrapper) {
-            swiperWrapper.style.transform = 'none';
-            swiperWrapper.style.transition = 'none';
-        }
-    }
+        // Mobile/Tablet: NO slider (static cards)
+        mm.add("(max-width: 1099px)", () => {
+            destroySwiperAndScrollTrigger();
+        });
 
-    // Responsive logic using GSAP matchMedia
-    const mm = gsap.matchMedia();
-
-    // Desktop ONLY: ScrollTrigger (1100px+)
-    mm.add("(min-width: 1100px)", () => {
-        initScrollTriggerSwiper();
-    });
-
-    // Mobile/Tablet: NO slider (static cards)
-    mm.add("(max-width: 1099px)", () => {
-        destroySwiperAndScrollTrigger();
-    });
-
-    // Handle resize/orientation change
-    mm.add("(orientationchange, resize)", () => {
-        mm.refresh();
-    });
-</script>
+        // Handle resize/orientation change
+        mm.add("(orientationchange, resize)", () => {
+            mm.refresh();
+        });
+    </script>
 
 
 
