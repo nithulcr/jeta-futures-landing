@@ -18,7 +18,7 @@
     <style>
         /* loeader start */
         .preloader {
-            z-index: 5000;
+
             background: #00182f;
             grid-template-rows: auto auto;
             justify-content: center;
@@ -29,7 +29,7 @@
             height: 100%;
             min-height: 100vh;
             z-index: 999999;
-            transition: all 1.5s ease-in-out;
+            transition: all .8s ease-in-out;
             box-shadow: rgb(248 247 244 / 15%) 5px 5px 4rem;
         }
 
@@ -92,14 +92,26 @@
 
         </div>
     </div>
-    <a href="https://ig.me/m/jeta_futures" target="_blank" class="fixed-contact">
+   <div class="fixed-contact">
 
-        <img src="images/instagram.png" class="icon" alt="Message">
-    </a>
-    <a href="https://wa.me/7907141487" target="_blank" class="fixed-contact fixed-contact2">
+        <img src="images/support.png" class="support-icon" alt="Message">
+        <span>Support?</span>
 
-        <img src="images/whatsapp.png" class="icon" alt="Whatsapp">
-    </a>
+        <div class="support-popup">
+             <a href="https://wa.me/7907141487?text=Hi JetaFX! I came across your website and would like to discuss a potential collaboration. Please let me know a convenient time to connect. Thank you!" target="_blank" class="support-single support1">
+
+                <img src="images/whatsapp.png" class="icon" alt="Whatsapp">
+            </a>
+            <a href="https://ig.me/m/jeta_futures" target="_blank" class="support-single support2">
+
+                <img src="images/instagram.png" class="icon" alt="instagram">
+            </a>
+            <a href="tel:7907141487" target="_blank" class="support-single support3">
+
+                <img src="images/call.png" class="icon" alt="call">
+            </a>
+        </div>
+    </div>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -110,7 +122,7 @@
                 <div class="header-right">
 
                     <div class="nav-actions">
-                        <a class="btn">
+                        <a href="#contact" class="btn">
                             <span>Get Start</span>
                             <span></span>
                             <span>
@@ -147,7 +159,7 @@
 
                         </p>
                         <div class="hero-buttons">
-                            <a class="btn">
+                            <a href="#contact" class="btn">
                                 <span>Get Start</span>
                                 <span></span>
                                 <span>
@@ -1214,7 +1226,7 @@
 
 
 
-        <section class="contact-section">
+        <section id="contact" class="contact-section">
             <div class="margin-20">
                 <div class="section-shape">
                     <img src="images/heros-bg.png" class="heros-bg">
@@ -1228,37 +1240,16 @@
 
                         </div>
                         <div class="form-btn">
-                            <a href="https://wa.me/7907141487" class="btn whatsapp center">
-                                <span>Connect with Whatsapp</span>
+                            <a href="https://wa.me/7907141487?text=Hi JetaFX! I came across your website and would like to discuss a potential collaboration. Please let me know a convenient time to connect. Thank you!"
+                                class="btn whatsapp center" target="_blank">
+                                <span>Connect with WhatsApp</span>
                                 <span></span>
                                 <span>
                                     <img src="images/whatsapp2.png">
                                 </span>
                             </a>
+
                         </div>
-                        <!-- <form class="fade-up2">
-                            <input type="text" placeholder="Full name*" required>
-                            <input type="email" placeholder="Email*" required>
-
-                            <textarea placeholder="Message"></textarea>
-                            <div class="form-btn">
-                                <a class="btn center">
-                                    <span>Send Message</span>
-                                    <span></span>
-                                    <span>
-                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M9.27154 18.4424L22.1703 12.9999M22.1703 12.9999L12.9997 9.27171M22.1703 12.9999L18.4422 22.1705"
-                                                stroke="black" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-
-                        </form> -->
 
                     </div>
                 </div>
@@ -1282,7 +1273,7 @@
 
             </div>
             <div class="footer-bottom">
-                <p>Copyright © Jetaf futures. 2025   </p>
+                <p>Copyright © Jetaf futures. 2026   </p>
 
             </div>
         </div>
@@ -1491,7 +1482,56 @@
 
 
 
+<script>
+        gsap.registerPlugin();
 
+        const button = document.querySelector(".fixed-contact");
+        const popupItems = document.querySelectorAll(".support-popup a");
+
+        let isOpen = false;
+
+        const tl = gsap.timeline({ paused: true });
+
+        tl.to(popupItems, {
+            opacity: 1,
+            pointerEvents: "auto",
+            duration: 0.2
+        });
+
+        tl.to(".support1", {
+            x: -10,
+            y: -70,
+            duration: 0.4,
+            ease: "back.out(1.7)"
+        }, 0);
+
+        tl.to(".support2", {
+            x: -50,
+            y: -40,
+            duration: 0.4,
+            ease: "back.out(1.7)"
+        }, 0.05);
+
+        tl.to(".support3", {
+            x: -60,
+            y: 10,
+            duration: 0.4,
+            ease: "back.out(1.7)"
+        }, 0.1);
+
+        button.addEventListener("click", (e) => {
+
+            // prevent clicking links when closed
+            if (!isOpen) {
+                tl.play();
+            } else {
+                tl.reverse();
+            }
+
+            isOpen = !isOpen;
+
+        });
+    </script>
 
 </body>
 
